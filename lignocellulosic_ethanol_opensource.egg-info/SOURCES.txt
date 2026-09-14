@@ -1,3 +1,5 @@
+LICENSE
+README.md
 pyproject.toml
 lignocellulosic_ethanol/__init__.py
 lignocellulosic_ethanol/cofermentation.py
@@ -12,3 +14,10 @@ lignocellulosic_ethanol_opensource.egg-info/SOURCES.txt
 lignocellulosic_ethanol_opensource.egg-info/dependency_links.txt
 lignocellulosic_ethanol_opensource.egg-info/requires.txt
 lignocellulosic_ethanol_opensource.egg-info/top_level.txt
+tests/test_cofermentation.py
+tests/test_dehydration.py
+tests/test_distillation.py
+tests/test_enzymatic_hydrolysis.py
+tests/test_feedstock.py
+tests/test_pretreatment.py
+tests/test_properties.py

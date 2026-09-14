@@ -56,7 +56,12 @@ Identical modules to the sibling ethanol-design-opensource repo's own
 relative volatility) and `dehydration.py` (3A zeolite VPSA, GPSA Ch. 20
 two-bed structure) -- reproduced rather than imported across repos (see
 each module's own docstring), since ethanol-water separation physics
-doesn't depend on feedstock origin.
+doesn't depend on feedstock origin. `dehydration.py`'s regeneration duty
+includes both sensible heat (purge-stream heating) and the latent heat
+of adsorption (4.19 MJ/kg water, Interra Global's published mSORB 3A EDG
+datasheet) -- a real energy term found via vendor research on the
+sibling repo and propagated here unchanged; at this module's own
+defaults it is roughly 90% of total regeneration duty, not a minor term.
 
 ## Related open-source work
 

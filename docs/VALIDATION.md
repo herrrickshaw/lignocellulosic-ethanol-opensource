@@ -83,6 +83,52 @@ is to run at full scale, but it describes throughput utilization, not
 the per-tonne yield efficiency this project's model computes, so the
 two figures are not combined into one claim.
 
+## A second real commercial plant brackets, rather than confirms, the model's prediction
+
+Vendor research (docs/VENDOR_REFERENCE.md) found a genuine SECOND real,
+commercial-scale 2G ethanol plant to check against: Clariant's sunliquid
+plant in Podari, Romania -- 250,000 tonnes/year wheat/cereal straw
+feedstock producing 50,000 tonnes/year cellulosic ethanol, a real
+ACHIEVED figure (first commercial production 2022), not a design
+nameplate. That works out to 253.5 L/tonne straw.
+
+| Source | Feedstock | L/tonne straw | Status |
+|---|---|---|---|
+| IOCL Panipat | rice straw | 234.9 | Real, published DESIGN figure |
+| Clariant Podari | wheat/cereal straw | 253.5 | Real, ACHIEVED commercial output |
+| This project's model | rice straw | 264.1 | Computed, default parameters |
+
+**The model's prediction now sits close to, and not far above, a real
+achieved commercial figure -- reframing the earlier "1.12x overshoot"
+finding rather than overturning it.** Compared to Panipat alone, the
+model looked like it was systematically overoptimistic; compared to
+Clariant, the model overshoots by only 264.1/253.5 = 1.04x, and
+Clariant's own real, achieved output is itself already 253.5/234.9 =
+1.08x above Panipat's DESIGN figure. A real, honest reading: Panipat's
+own published design figure may itself be a conservative baseline
+relative to what state-of-the-art 2G technology can and does achieve
+commercially, not proof this project's literature-derived defaults are
+too optimistic. **This is NOT presented as a corrected or improved
+validation** -- the two real plants use different feedstock (rice vs.
+wheat straw) and, per Clariant's own disclosure, a different
+pretreatment chemistry entirely ("chemical-free" vs. this project's
+modeled dilute-acid process), so this is additional honest context,
+not a resolved discrepancy.
+
+**A related, separately verified finding**: Novonesis's (formerly
+Novozymes) real, currently marketed Cellic CTec3 HS enzyme is
+independently reported achieving 80-96% cellulose-to-glucose
+conversion in published technical literature -- well ABOVE this
+project's own `cellulose_conversion_efficiency` default of 0.75. This
+project's enzymatic-hydrolysis default is therefore a genuinely
+conservative choice relative to real modern commercial enzyme
+performance, not an optimistic one -- suggesting that if the model's
+overall yield needs adjusting toward real-world plant performance, the
+enzymatic hydrolysis step is likely NOT where the gap originates (this
+project's xylose-recovery and fermentation-efficiency defaults are the
+more likely candidates, per the same logic already applied to the grain
+route in the sibling ethanol-design-opensource repo).
+
 ## What was deliberately not modeled in this first pass
 
 - Rate-based/kinetic enzymatic hydrolysis (Michaelis-Menten-type

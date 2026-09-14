@@ -49,25 +49,31 @@ streamlit run streamlit_app.py                   # interactive app
 | `lignocellulosic_ethanol/distillation.py` | Fenske-Underwood-Gilliland shortcut (same as ethanol-design-opensource) | Actual stages, reflux, distillate purity |
 | `lignocellulosic_ethanol/dehydration.py` | 3A zeolite VPSA (same as ethanol-design-opensource) | Bed sizing, BIS IS 15464 compliance |
 
-## Validated against a real, operating India 2G plant
+## Validated against TWO real, operating 2G plants
 
 `examples/full_chain_worked_example.py` runs rice straw at IOCL
 Panipat's real 425.7 t/day scale and computes 264.1 L/tonne against
-Panipat's own published 234.9 L/tonne design figure — a 1.12x overshoot,
-the same order of magnitude as the 13-21% gap the sibling ethanol-
-design-opensource repo found for its grain route, reported honestly
-rather than tuned away. Separately, `cofermentation.py`'s own test suite
-confirms a genuinely elegant DERIVED fact: the theoretical ethanol mass
-yield per kg of sugar is identical for glucose and xylose (0.5114 kg/kg
-both), since both are (CH2O)n carbohydrates regardless of chain length.
+Panipat's own published 234.9 L/tonne DESIGN figure (1.12x) — but a
+second real commercial plant, Clariant's sunliquid facility in Podari,
+Romania, ACHIEVED 253.5 L/tonne wheat straw in real operation, bracketing
+this model's prediction much more closely (1.04x). Reported as honest
+context, not a resolved discrepancy — the two real plants use different
+feedstock and different pretreatment chemistry (Panipat/dilute-acid-style
+vs. Clariant's "chemical-free" process) — see `docs/VALIDATION.md`.
+Separately, `cofermentation.py`'s own test suite confirms a genuinely
+elegant DERIVED fact: the theoretical ethanol mass yield per kg of sugar
+is identical for glucose and xylose (0.5114 kg/kg both), since both are
+(CH2O)n carbohydrates regardless of chain length.
 
 ## Vendor reference
 
-`docs/VENDOR_REFERENCE.md` notes Praj Industries as the real technology
-provider behind IOCL Panipat — the same company already verified in the
-sibling ethanol-design-opensource repo's own vendor document for 1G
-dehydration, now confirmed spanning both generations of this project
-family's fuel-ethanol coverage.
+`docs/VENDOR_REFERENCE.md` covers Praj Industries (the real technology
+provider behind IOCL Panipat, already verified for 1G dehydration in the
+sibling ethanol-design-opensource repo's own vendor document), Clariant's
+real sunliquid technology and Podari plant output, and Novonesis
+(formerly Novozymes) — whose real, currently marketed Cellic CTec3 HS
+enzyme is independently reported achieving 80-96% cellulose conversion,
+well above this repo's own deliberately conservative 75% default.
 
 ## Related open-source work
 

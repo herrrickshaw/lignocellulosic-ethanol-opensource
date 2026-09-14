@@ -26,6 +26,13 @@ PANIPAT_FEEDSTOCK_KG_S = PANIPAT_FEEDSTOCK_TPD * 1000.0 / 86400.0
 PANIPAT_NAMEPLATE_ETHANOL_KLPD = 100.0
 PANIPAT_DESIGN_L_PER_TONNE = PANIPAT_NAMEPLATE_ETHANOL_KLPD * 1000.0 / PANIPAT_FEEDSTOCK_TPD
 
+# Clariant sunliquid, Podari, Romania -- a real, ACHIEVED (not design) commercial
+# cellulosic-ethanol output figure, different feedstock (wheat/cereal straw) and a
+# different ("chemical-free") pretreatment chemistry -- see docs/VALIDATION.md.
+CLARIANT_PODARI_STRAW_TONNES_PER_YEAR = 250_000.0
+CLARIANT_PODARI_ETHANOL_TONNES_PER_YEAR = 50_000.0
+CLARIANT_PODARI_L_PER_TONNE = (CLARIANT_PODARI_ETHANOL_TONNES_PER_YEAR * 1000.0 / 0.789) / CLARIANT_PODARI_STRAW_TONNES_PER_YEAR
+
 
 def main() -> None:
     print("=" * 78)
@@ -74,6 +81,16 @@ def main() -> None:
           "running at only 62% of its DESIGN THROUGHPUT capacity in Nov-Dec 2025, a real, disclosed "
           "commissioning challenge for India's first commercial 2G plant, not a claim this model "
           "predicts or explains.")
+
+    clariant_ratio = l_per_tonne / CLARIANT_PODARI_L_PER_TONNE
+    print(f"\n=== A second real plant: Clariant's sunliquid facility (Podari, Romania) achieved "
+          f"{CLARIANT_PODARI_L_PER_TONNE:.1f} L/tonne wheat/cereal straw in real commercial "
+          f"operation ({CLARIANT_PODARI_ETHANOL_TONNES_PER_YEAR:,.0f} t/year ethanol from "
+          f"{CLARIANT_PODARI_STRAW_TONNES_PER_YEAR:,.0f} t/year straw) -- this model's "
+          f"{l_per_tonne:.1f} L/tonne is only {clariant_ratio:.2f}x that REAL ACHIEVED figure, "
+          f"vs. {ratio:.2f}x Panipat's DESIGN figure. Different feedstock (wheat vs. rice straw) "
+          f"and a different, 'chemical-free' pretreatment chemistry at Podari mean this is "
+          f"additional honest context, not a resolved discrepancy -- see docs/VALIDATION.md. ===")
 
 
 if __name__ == "__main__":

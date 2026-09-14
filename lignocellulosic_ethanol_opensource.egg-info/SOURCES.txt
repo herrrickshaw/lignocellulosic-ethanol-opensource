@@ -1,0 +1,14 @@
+pyproject.toml
+lignocellulosic_ethanol/__init__.py
+lignocellulosic_ethanol/cofermentation.py
+lignocellulosic_ethanol/dehydration.py
+lignocellulosic_ethanol/distillation.py
+lignocellulosic_ethanol/enzymatic_hydrolysis.py
+lignocellulosic_ethanol/feedstock.py
+lignocellulosic_ethanol/pretreatment.py
+lignocellulosic_ethanol/properties.py
+lignocellulosic_ethanol_opensource.egg-info/PKG-INFO
+lignocellulosic_ethanol_opensource.egg-info/SOURCES.txt
+lignocellulosic_ethanol_opensource.egg-info/dependency_links.txt
+lignocellulosic_ethanol_opensource.egg-info/requires.txt
+lignocellulosic_ethanol_opensource.egg-info/top_level.txt

@@ -1,5 +1,9 @@
 # Lignocellulosic (2G) Ethanol Design (open-source)
 
+<!-- how-to-use-with-ai -->
+> **New here?** See [How to use this repo with AI (Claude, Gemini, ChatGPT)](HOW_TO_USE_WITH_AI.md) — clone it, paste it into an AI tool, and ask in plain English.
+
+
 Interactive, open-source conceptual sizing tools for a second-generation
 (2G) cellulosic fuel-ethanol biorefinery — agricultural-residue
 feedstock characterization (rice straw, corn stover, bagasse), dilute-

@@ -44,3 +44,18 @@ def test_richer_distillate_target_needs_more_stages():
     lean = D.design_column(x_feed_mass_frac=0.08, x_distillate_mass_frac=0.85, x_bottoms_mass_frac=0.0005)
     rich = D.design_column(x_feed_mass_frac=0.08, x_distillate_mass_frac=0.94, x_bottoms_mass_frac=0.0005)
     assert rich.n_actual_stages > lean.n_actual_stages
+
+
+def test_fenske_hand_computed_constant_alpha():
+    # ln[(0.8/0.2)*(0.99/0.01)] / ln 2 = ln 396 / ln 2 = 8.6294
+    assert D.fenske_min_stages(0.8, 0.01, 2.0) == pytest.approx(8.6294, abs=1e-4)
+
+
+def test_minimum_reflux_hand_computed():
+    # alpha 2, xF 0.1: y* = 0.2/1.1 = 0.181818; Rmin = (0.8-0.181818)/(0.181818-0.1) = 7.5556
+    assert D.minimum_reflux_saturated_liquid_feed(0.1, 0.8, 2.0) == pytest.approx(7.5556, abs=1e-4)
+
+
+def test_minimum_reflux_rejects_alpha_at_or_below_one():
+    with pytest.raises(ValueError):
+        D.minimum_reflux_saturated_liquid_feed(0.5, 0.8, 1.0)

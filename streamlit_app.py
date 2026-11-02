@@ -37,7 +37,7 @@ with tab_feed:
     substrate = st.radio("Substrate", ["Rice straw", "Corn stover", "Bagasse"])
     flow_tpd = st.number_input("Feedstock flow (tonnes/day)", min_value=1.0, value=425.7)
     flow_kg_s = flow_tpd * 1000.0 / 86400.0
-    fs = {"Rice straw": F.rice_straw, "Corn stover": F.corn_stover, "Bagasse": F.bagasse}[substrate](flow_kg_s)
+    fs = F.FEEDSTOCKS[substrate](flow_kg_s)
     st.session_state["feedstock"] = fs
     colA, colB, colC, colD = st.columns(4)
     colA.metric("Cellulose", f"{fs.cellulose_mass_frac:.0%}")

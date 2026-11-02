@@ -49,9 +49,13 @@ import CoolProp.CoolProp as CP
 BIS_IS_15464_MAX_WATER_VOL_FRAC = 0.008  # India anhydrous fuel-ethanol spec
 HEAT_OF_ADSORPTION_MJ_PER_KG_WATER = 4.19  # 1,800 BTU/lb H2O, Interra Global mSORB 3A EDG datasheet
 
+MAX_SINGLE_VESSEL_ASPECT_RATIO = 8.0  # height:diameter above which parallel vessels are recommended
+
 
 @dataclass
 class DehydrationBedResult:
+    """Bed sizing: masses kg, lengths m, duties kW, flows kg/s."""
+
     water_removed_per_cycle_kg: float
     bed_mass_kg: float
     bed_volume_m3: float
@@ -133,7 +137,7 @@ def size_dehydration_bed(
     # repo's own vessel-geometry guard in vessels.py) would split the duty across
     # multiple parallel, shorter vessels instead -- flagged here, not silently sized.
     aspect_ratio = bed_height_m / diameter_m
-    recommend_parallel = aspect_ratio > 8.0
+    recommend_parallel = aspect_ratio > MAX_SINGLE_VESSEL_ASPECT_RATIO
 
     return DehydrationBedResult(
         water_removed_per_cycle_kg=water_removed_kg,

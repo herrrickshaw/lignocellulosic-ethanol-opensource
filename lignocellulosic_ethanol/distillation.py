@@ -36,9 +36,13 @@ from dataclasses import dataclass
 
 from .properties import bubble_point, mass_frac_to_mole_frac_ethanol, mole_frac_to_mass_frac_ethanol
 
+DEFAULT_REFLUX_RATIO_FACTOR = 1.3  # actual reflux as a multiple of Rmin
+
 
 @dataclass
 class ColumnDesign:
+    """Shortcut column design: mole fractions (-), alpha (-), stages (-), reflux (-)."""
+
     x_feed_mole: float
     x_distillate_mole: float
     x_bottoms_mole: float
@@ -51,6 +55,7 @@ class ColumnDesign:
 
 
 def _alpha_at(x_mole: float, P_Pa: float) -> float:
+    """Ethanol/water relative volatility at liquid mole fraction x and pressure P (Pa)."""
     return bubble_point(x_mole, P_Pa).relative_volatility
 
 
@@ -98,7 +103,7 @@ def gilliland_stages(n_min: float, r_min: float, r_actual: float) -> float:
 
 
 def design_column(x_feed_mass_frac: float, x_distillate_mass_frac: float, x_bottoms_mass_frac: float,
-                  reflux_ratio_factor: float = 1.3, P_Pa: float = 101325.0) -> ColumnDesign:
+                  reflux_ratio_factor: float = DEFAULT_REFLUX_RATIO_FACTOR, P_Pa: float = 101325.0) -> ColumnDesign:
     """Full FUG shortcut design from mass-fraction (%w/w) column specs, the
     units a plant's own lab data is reported in. `reflux_ratio_factor` sets
     actual reflux as a multiple of Rmin -- 1.2-1.5x Rmin is the standard

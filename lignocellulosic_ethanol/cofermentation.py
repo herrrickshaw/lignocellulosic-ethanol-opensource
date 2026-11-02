@@ -55,6 +55,8 @@ DEFAULT_XYLOSE_FERMENTATION_EFFICIENCY = 0.85
 
 @dataclass
 class CofermentationResult:
+    """Co-fermentation outputs; ethanol in kg/s (and L/s), efficiencies as fractions (-)."""
+
     ethanol_from_glucose_kg_s: float
     ethanol_from_xylose_kg_s: float
     total_ethanol_kg_s: float
@@ -66,6 +68,7 @@ class CofermentationResult:
 def coferment(hydrolysis: HydrolysisResult, pretreated: PretreatmentResult,
              glucose_fermentation_efficiency: float = DEFAULT_GLUCOSE_FERMENTATION_EFFICIENCY,
              xylose_fermentation_efficiency: float = DEFAULT_XYLOSE_FERMENTATION_EFFICIENCY) -> CofermentationResult:
+    """Ferment glucose and xylose streams (kg/s) to ethanol at the given efficiencies in (0, 1]."""
     if not 0 < glucose_fermentation_efficiency <= 1.0:
         raise ValueError("glucose_fermentation_efficiency must be in (0, 1]")
     if not 0 < xylose_fermentation_efficiency <= 1.0:

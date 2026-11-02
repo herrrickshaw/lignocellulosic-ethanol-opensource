@@ -1,0 +1,19 @@
+==============================================================================
+2G LIGNOCELLULOSIC ETHANOL WORKED EXAMPLE (IOCL Panipat scale)
+==============================================================================
+Feed: rice straw, 425.7 t/day (4.927 kg/s)
+IOCL Panipat's own published design figure: 234.9 L ethanol/tonne rice straw
+
+Pretreatment: 72.6 t/day xylose (75% recovery)
+Enzymatic hydrolysis: 124.2 t/day glucose (75% conversion)
+Co-fermentation: 112,411 L/day ethanol (264.1 L/tonne rice straw; from glucose 64%, from xylose 36%)
+
+Distillation: 15 stages, distillate 94.0% w/w
+Dehydration: 47,177 kg sieve, 2 beds, meets BIS spec: True
+
+Lignin/residue for process heat: 177.7 t/day at 14.1 MJ/kg
+
+=== Validation: 264.1 L/tonne (this model) vs. 234.9 L/tonne (Panipat's own published design figure) = 1.12x ===
+This model overshoots the real plant's DESIGN figure by a margin consistent with the same lab-vs-real-scale gap found in the sibling ethanol-design-opensource repo's grain route (13-21% there; see docs/VALIDATION.md here for the full discussion). Separately, and NOT directly comparable to this per-tonne yield figure: Panipat itself was reported running at only 62% of its DESIGN THROUGHPUT capacity in Nov-Dec 2025, a real, disclosed commissioning challenge for India's first commercial 2G plant, not a claim this model predicts or explains.
+
+=== A second real plant: Clariant's sunliquid facility (Podari, Romania) achieved 253.5 L/tonne wheat/cereal straw in real commercial operation (50,000 t/year ethanol from 250,000 t/year straw) -- this model's 264.1 L/tonne is only 1.04x that REAL ACHIEVED figure, vs. 1.12x Panipat's DESIGN figure. Different feedstock (wheat vs. rice straw) and a different, 'chemical-free' pretreatment chemistry at Podari mean this is additional honest context, not a resolved discrepancy -- see docs/VALIDATION.md. ===

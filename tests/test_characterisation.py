@@ -22,12 +22,17 @@ DATA = ROOT / "tests" / "data"
 GOLDEN = json.loads((DATA / "golden_baseline.json").read_text())
 
 
-def _approx(expected):
+def _approx(expected, rel=1e-12):
     if isinstance(expected, dict):
-        return {k: _approx(v) for k, v in expected.items()}
+        return {k: _approx(v, rel) for k, v in expected.items()}
     if isinstance(expected, float):
-        return pytest.approx(expected, rel=1e-12)
+        return pytest.approx(expected, rel=rel)
     return expected
+
+
+# The column/VLE design uses iterative searches whose last digits differ between platforms
+# (macOS golden capture vs the Linux CI runner, ~1e-11 relative), so those use a looser bound.
+ITERATIVE_REL = 1e-8
 
 
 @pytest.mark.parametrize("name", ["rice_straw", "corn_stover", "bagasse"])
@@ -46,10 +51,10 @@ def test_chain_matches_baseline(name):
 
 
 def test_column_bed_and_vle_match_baseline():
-    assert dataclasses.asdict(D.design_column(0.03, 0.94, 0.0005)) == _approx(GOLDEN["column"])
-    assert dataclasses.asdict(DH.size_dehydration_bed(1.2, 0.06)) == _approx(GOLDEN["bed"])
-    assert dataclasses.asdict(P.find_azeotrope()) == _approx(GOLDEN["az"])
-    assert dataclasses.asdict(P.bubble_point(0.3)) == _approx(GOLDEN["bp"])
+    assert dataclasses.asdict(D.design_column(0.03, 0.94, 0.0005)) == _approx(GOLDEN["column"], ITERATIVE_REL)
+    assert dataclasses.asdict(DH.size_dehydration_bed(1.2, 0.06)) == _approx(GOLDEN["bed"], ITERATIVE_REL)
+    assert dataclasses.asdict(P.find_azeotrope()) == _approx(GOLDEN["az"], ITERATIVE_REL)
+    assert dataclasses.asdict(P.bubble_point(0.3)) == _approx(GOLDEN["bp"], ITERATIVE_REL)
 
 
 def test_worked_example_stdout_unchanged():

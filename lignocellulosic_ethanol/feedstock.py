@@ -36,6 +36,8 @@ from dataclasses import dataclass
 
 @dataclass
 class LignocellulosicFeedstock:
+    """Dry-basis feedstock: mass flow (kg/s) and structural mass fractions (-)."""
+
     name: str
     mass_flow_kg_s: float
     cellulose_mass_frac: float
@@ -49,31 +51,43 @@ class LignocellulosicFeedstock:
             raise ValueError(f"cellulose+hemicellulose+lignin+ash mass fractions must be in (0, 1], got {total:.4f}")
 
     def cellulose_kg_s(self) -> float:
+        """Cellulose mass flow, kg/s."""
         return self.mass_flow_kg_s * self.cellulose_mass_frac
 
     def hemicellulose_kg_s(self) -> float:
+        """Hemicellulose mass flow, kg/s."""
         return self.mass_flow_kg_s * self.hemicellulose_mass_frac
 
     def lignin_kg_s(self) -> float:
+        """Lignin mass flow, kg/s."""
         return self.mass_flow_kg_s * self.lignin_mass_frac
 
     def ash_kg_s(self) -> float:
+        """Ash mass flow, kg/s."""
         return self.mass_flow_kg_s * self.ash_mass_frac
 
 
 def rice_straw(mass_flow_kg_s: float) -> LignocellulosicFeedstock:
+    """Rice straw at the given mass flow (kg/s)."""
     return LignocellulosicFeedstock("rice straw", mass_flow_kg_s,
                                     cellulose_mass_frac=0.35, hemicellulose_mass_frac=0.20,
                                     lignin_mass_frac=0.13, ash_mass_frac=0.15)
 
 
 def corn_stover(mass_flow_kg_s: float) -> LignocellulosicFeedstock:
+    """Corn stover at the given mass flow (kg/s)."""
     return LignocellulosicFeedstock("corn stover", mass_flow_kg_s,
                                     cellulose_mass_frac=0.36, hemicellulose_mass_frac=0.21,
                                     lignin_mass_frac=0.178, ash_mass_frac=0.07)
 
 
 def bagasse(mass_flow_kg_s: float) -> LignocellulosicFeedstock:
+    """Sugarcane bagasse at the given mass flow (kg/s)."""
     return LignocellulosicFeedstock("sugarcane bagasse", mass_flow_kg_s,
                                     cellulose_mass_frac=0.3952, hemicellulose_mass_frac=0.2563,
                                     lignin_mass_frac=0.3036, ash_mass_frac=0.02)
+
+
+#: Registry of built-in feedstocks keyed by display name; add a variant here
+#: without editing callers (e.g. the Streamlit selector).
+FEEDSTOCKS = {"Rice straw": rice_straw, "Corn stover": corn_stover, "Bagasse": bagasse}

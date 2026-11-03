@@ -30,3 +30,10 @@ def test_component_flows_scale_with_mass_flow():
 def test_rejects_fractions_exceeding_one():
     with pytest.raises(ValueError):
         F.LignocellulosicFeedstock("bad", 1000.0, 0.5, 0.4, 0.3, 0.2)
+
+
+def test_feedstock_registry_covers_builtin_feedstocks():
+    from lignocellulosic_ethanol import feedstock as F
+
+    assert {k: v(1.0).name for k, v in F.FEEDSTOCKS.items()} == {
+        "Rice straw": "rice straw", "Corn stover": "corn stover", "Bagasse": "sugarcane bagasse"}

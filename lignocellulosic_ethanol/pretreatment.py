@@ -42,6 +42,8 @@ DEFAULT_XYLOSE_RECOVERY_FRACTION = 0.75
 
 @dataclass
 class PretreatmentResult:
+    """Pretreatment outputs; all flows in kg/s, recovery as a fraction (-)."""
+
     feedstock_name: str
     xylose_produced_kg_s: float
     cellulose_passthrough_kg_s: float
@@ -52,6 +54,7 @@ class PretreatmentResult:
 
 def pretreat(feedstock: LignocellulosicFeedstock,
             xylose_recovery_fraction: float = DEFAULT_XYLOSE_RECOVERY_FRACTION) -> PretreatmentResult:
+    """Dilute-acid hydrolysis of hemicellulose to xylose; recovery fraction in (0, 1]."""
     if not 0 < xylose_recovery_fraction <= 1.0:
         raise ValueError("xylose_recovery_fraction must be in (0, 1]")
 

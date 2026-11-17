@@ -54,6 +54,8 @@ def mass_frac_to_mole_frac_ethanol(w_mass: float) -> float:
 
 @dataclass
 class VLEPoint:
+    """Ethanol-water VLE point: mole fractions (-), temperature (K), alpha (-)."""
+
     x_ethanol_mole: float
     y_ethanol_mole: float
     T_K: float

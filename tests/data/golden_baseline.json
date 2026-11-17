@@ -1,0 +1,145 @@
+{
+ "az": {
+  "T_K": 351.4379104219968,
+  "relative_volatility": 1.000000877459232,
+  "x_ethanol_mole": 0.8917683410644532,
+  "y_ethanol_mole": 0.8917684257546171
+ },
+ "bagasse": {
+  "cof": {
+   "ethanol_from_glucose_kg_s": 0.7468655991533242,
+   "ethanol_from_xylose_kg_s": 0.4678330511824476,
+   "glucose_fermentation_efficiency": 0.9,
+   "total_ethanol_kg_s": 1.2146986503357717,
+   "total_ethanol_l_s": 1.5395420156346915,
+   "xylose_fermentation_efficiency": 0.85
+  },
+  "feed": {
+   "ash_mass_frac": 0.02,
+   "cellulose_mass_frac": 0.3952,
+   "hemicellulose_mass_frac": 0.2563,
+   "lignin_mass_frac": 0.3036,
+   "mass_flow_kg_s": 4.927,
+   "name": "sugarcane bagasse"
+  },
+  "hyd": {
+   "cellulose_conversion_efficiency": 0.75,
+   "glucose_produced_kg_s": 1.6226293363562354,
+   "unconverted_cellulose_kg_s": 0.48678759999999993
+  },
+  "pre": {
+   "cellulose_passthrough_kg_s": 1.9471503999999997,
+   "feedstock_name": "sugarcane bagasse",
+   "lignin_passthrough_kg_s": 1.4958371999999998,
+   "unrecovered_hemicellulose_kg_s": 0.3156975249999999,
+   "xylose_produced_kg_s": 1.076195945237284,
+   "xylose_recovery_fraction": 0.75
+  },
+  "res": {
+   "blended_hhv_MJ_kg": 22.52208746595405,
+   "residue_mass_flow_kg_s": 2.396862325
+  }
+ },
+ "bed": {
+  "bed_diameter_m": 1.8426354638471225,
+  "bed_height_m": 27.771428571428576,
+  "bed_mass_kg": 51840.0,
+  "bed_volume_m3": 74.05714285714286,
+  "height_to_diameter_ratio": 15.071580416370777,
+  "meets_bis_spec": true,
+  "n_beds": 2,
+  "recommend_parallel_vessels": true,
+  "regen_ethanol_vapor_flow_kg_s": 0.24,
+  "regen_heater_duty_kW": 656.1621055047041,
+  "regen_latent_duty_kW": 603.36,
+  "regen_sensible_duty_kW": 52.80210550470403,
+  "water_removed_per_cycle_kg": 2073.6
+ },
+ "bp": {
+  "T_K": 354.7688579151592,
+  "relative_volatility": 3.1630510706781108,
+  "x_ethanol_mole": 0.3,
+  "y_ethanol_mole": 0.5754785033538795
+ },
+ "column": {
+  "distillate_mass_frac_ethanol": 0.94,
+  "n_actual_stages": 15.152406385140075,
+  "n_min_stages": 8.046489798757474,
+  "r_actual": 35.43828274020827,
+  "r_min": 27.260217492467902,
+  "relative_volatility_avg": 3.6201518495996328,
+  "x_bottoms_mole": 0.0001955867707840957,
+  "x_distillate_mole": 0.8596790492384075,
+  "x_feed_mole": 0.011949939066322012
+ },
+ "corn_stover": {
+  "cof": {
+   "ethanol_from_glucose_kg_s": 0.6803431571234735,
+   "ethanol_from_xylose_kg_s": 0.3833200965599455,
+   "glucose_fermentation_efficiency": 0.9,
+   "total_ethanol_kg_s": 1.063663253683419,
+   "total_ethanol_l_s": 1.3481156573934334,
+   "xylose_fermentation_efficiency": 0.85
+  },
+  "feed": {
+   "ash_mass_frac": 0.07,
+   "cellulose_mass_frac": 0.36,
+   "hemicellulose_mass_frac": 0.21,
+   "lignin_mass_frac": 0.178,
+   "mass_flow_kg_s": 4.927,
+   "name": "corn stover"
+  },
+  "hyd": {
+   "cellulose_conversion_efficiency": 0.75,
+   "glucose_produced_kg_s": 1.4781036464783521,
+   "unconverted_cellulose_kg_s": 0.44342999999999994
+  },
+  "pre": {
+   "cellulose_passthrough_kg_s": 1.7737199999999997,
+   "feedstock_name": "corn stover",
+   "lignin_passthrough_kg_s": 0.8770059999999998,
+   "unrecovered_hemicellulose_kg_s": 0.2586675,
+   "xylose_produced_kg_s": 0.8817836461171662,
+   "xylose_recovery_fraction": 0.75
+  },
+  "res": {
+   "blended_hhv_MJ_kg": 18.55659411011524,
+   "residue_mass_flow_kg_s": 1.9239935
+  }
+ },
+ "rice_straw": {
+  "cof": {
+   "ethanol_from_glucose_kg_s": 0.6614447360922658,
+   "ethanol_from_xylose_kg_s": 0.36506675862851956,
+   "glucose_fermentation_efficiency": 0.9,
+   "total_ethanol_kg_s": 1.0265114947207854,
+   "total_ethanol_l_s": 1.3010285104192463,
+   "xylose_fermentation_efficiency": 0.85
+  },
+  "feed": {
+   "ash_mass_frac": 0.15,
+   "cellulose_mass_frac": 0.35,
+   "hemicellulose_mass_frac": 0.2,
+   "lignin_mass_frac": 0.13,
+   "mass_flow_kg_s": 4.927,
+   "name": "rice straw"
+  },
+  "hyd": {
+   "cellulose_conversion_efficiency": 0.75,
+   "glucose_produced_kg_s": 1.4370452118539534,
+   "unconverted_cellulose_kg_s": 0.43111249999999995
+  },
+  "pre": {
+   "cellulose_passthrough_kg_s": 1.7244499999999998,
+   "feedstock_name": "rice straw",
+   "lignin_passthrough_kg_s": 0.64051,
+   "unrecovered_hemicellulose_kg_s": 0.24634999999999999,
+   "xylose_produced_kg_s": 0.8397939486830155,
+   "xylose_recovery_fraction": 0.75
+  },
+  "res": {
+   "blended_hhv_MJ_kg": 14.077245508982037,
+   "residue_mass_flow_kg_s": 2.0570225
+  }
+ }
+}

@@ -59,6 +59,8 @@ RESIDUAL_CARBOHYDRATE_HHV_MJ_KG = 17.5  # estimated typical dry-carbohydrate HHV
 
 @dataclass
 class HydrolysisResult:
+    """Enzymatic hydrolysis outputs; flows in kg/s, efficiency as a fraction (-)."""
+
     glucose_produced_kg_s: float
     unconverted_cellulose_kg_s: float
     cellulose_conversion_efficiency: float
@@ -66,12 +68,15 @@ class HydrolysisResult:
 
 @dataclass
 class LigninResidueResult:
+    """Solid residue: mass flow (kg/s) and blended higher heating value (MJ/kg)."""
+
     residue_mass_flow_kg_s: float
     blended_hhv_MJ_kg: float
 
 
 def hydrolyze_cellulose(pretreated: PretreatmentResult,
                         cellulose_conversion_efficiency: float = DEFAULT_CELLULOSE_CONVERSION_EFFICIENCY) -> HydrolysisResult:
+    """Cellulase hydrolysis of cellulose to glucose; conversion fraction in (0, 1]."""
     if not 0 < cellulose_conversion_efficiency <= 1.0:
         raise ValueError("cellulose_conversion_efficiency must be in (0, 1]")
     glucose_kg_s = pretreated.cellulose_passthrough_kg_s * CELLULOSE_TO_GLUCOSE_MW_RATIO * cellulose_conversion_efficiency
@@ -82,6 +87,7 @@ def hydrolyze_cellulose(pretreated: PretreatmentResult,
 
 def lignin_residue_energy(pretreated: PretreatmentResult, hydrolysis: HydrolysisResult,
                           feedstock: LignocellulosicFeedstock) -> LigninResidueResult:
+    """Mass flow (kg/s) and blended HHV (MJ/kg) of lignin + ash + unconverted carbohydrate."""
     lignin_kg_s = pretreated.lignin_passthrough_kg_s
     ash_kg_s = feedstock.ash_kg_s()
     residual_carbohydrate_kg_s = (pretreated.unrecovered_hemicellulose_kg_s + hydrolysis.unconverted_cellulose_kg_s)

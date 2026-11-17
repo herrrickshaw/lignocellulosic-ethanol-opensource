@@ -58,3 +58,18 @@ def test_undersized_bed_raises_pancake_guard():
 def test_rejects_implausible_inlet_water_content():
     with pytest.raises(ValueError):
         DH.size_dehydration_bed(ethanol_vapor_mass_flow_kg_s=1.9, inlet_water_mass_frac=0.5)
+
+
+def test_bed_sizing_hand_computed():
+    # 1 kg/s vapour, 5 wt% water, 8 h: water = 1*3600*8*0.05 = 1440 kg per cycle
+    # sieve = 1440/0.04 = 36,000 kg; volume = 36000/700 = 51.43 m3
+    # area = (1/1.5)/0.30 = 2.222 m2 -> D = 1.682 m, H = 51.43/2.222 = 23.14 m
+    # latent = 1440 kg * 4.19 MJ/kg / (4 h) = 419.0 kW
+    r = DH.size_dehydration_bed(1.0, 0.05)
+    assert r.water_removed_per_cycle_kg == pytest.approx(1440.0)
+    assert r.bed_mass_kg == pytest.approx(36000.0)
+    assert r.bed_volume_m3 == pytest.approx(51.4286, abs=1e-3)
+    assert r.bed_diameter_m == pytest.approx(1.6821, abs=1e-3)
+    assert r.bed_height_m == pytest.approx(23.143, abs=1e-2)
+    assert r.regen_latent_duty_kW == pytest.approx(419.0, abs=0.1)
+    assert r.n_beds == 2 and r.recommend_parallel_vessels

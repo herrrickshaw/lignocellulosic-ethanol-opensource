@@ -1,0 +1,9 @@
+[run]
+source = lignocellulosic_ethanol
+omit =
+    tests/*
+    */conftest.py
+    */test_*.py
+    docs/*
+    examples/*
+    streamlit_app.py

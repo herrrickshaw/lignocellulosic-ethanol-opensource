@@ -270,12 +270,11 @@ def test_relative_volatility_avg_is_the_geometric_mean_of_end_alphas():
 def test_design_column_rejects_misordered_compositions():
     with pytest.raises(ValueError, match="x_bottoms < x_feed < x_distillate"):
         D.design_column(0.93, 0.08, 0.0005)
-    with pytest.raises(ValueError):
-        D.design_column(0.08, 0.93, 0.08)      # bottoms == feed
-    with pytest.raises(ValueError):
-        D.design_column(0.5, 0.5, 0.001)       # feed == distillate
-    with pytest.raises(ValueError):
-        D.design_column(0.0001, 0.93, 0.0005)  # feed leaner than bottoms
+    for args in [(0.08, 0.93, 0.08),       # bottoms == feed
+                 (0.5, 0.5, 0.001),        # feed == distillate
+                 (0.0001, 0.93, 0.0005)]:  # feed leaner than bottoms
+        with pytest.raises(ValueError, match="x_bottoms < x_feed < x_distillate"):
+            D.design_column(*args)
 
 
 def test_design_column_reflux_factor_and_consistency():
